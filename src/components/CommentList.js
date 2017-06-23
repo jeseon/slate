@@ -2,12 +2,7 @@ import React, { Component } from 'react'
 import firebase from 'firebase'
 import { Button, Form, Container, Header } from 'semantic-ui-react'
 import CommentItems from './CommentItems'
-
-const config = {
-  apiKey: 'AIzaSyC4OAocloB-i5mYX8IWy8tOAm882X8W3I8',
-  authDomain: 'monos-1279c.firebaseapp.com',
-  databaseURL: 'https://monos-1279c.firebaseio.com'
-};
+import { config } from '../config'
 
 class Comments extends Component {
   state = {
@@ -16,7 +11,7 @@ class Comments extends Component {
   };
 
   componentWillMount() {
-    firebase.initializeApp(config);
+    firebase.initializeApp(config.firebase);
     this.firedata = firebase.database().ref('/comments');
     this.firedata.on('value', snapshot => {
       this.setState({
